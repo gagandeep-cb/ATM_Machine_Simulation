@@ -5,9 +5,11 @@ int main()
     int pin1 = 2345, pin2;
     int choice;
     float balance = 2000, amount;
+    float history[10];
+    int count = 0;
     float last_deposit = 0, last_withdraw = 0;
     int attempts = 0;
-  printf("========== Welcome to the ATM. Please insert your card... ==========\n");
+    printf("========== Welcome to the ATM. Please insert your card... ==========\n");
 
     while (attempts < 3)
     {
@@ -39,9 +41,10 @@ int main()
         printf("1. Check Balance\n");
         printf("2. Deposit\n");
         printf("3. Withdraw\n");
-        printf("4. Mini Statement\n");
-        printf("5. Change PIN\n");
-        printf("6. Exit\n");
+        printf("4. Fast Cash\n");
+        printf("5. Mini Statement\n");
+        printf("6. Change PIN\n");
+        printf("7. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -57,6 +60,8 @@ int main()
             scanf("%f", &amount);
 
             balance = balance + amount;
+            history[count] = amount;
+            count++;
             last_deposit = amount;
 
             printf("The amount has been deposited successfully.\n");
@@ -69,6 +74,8 @@ int main()
             if (amount <= balance)
             {
                 balance = balance - amount;
+                history[count] = -amount;
+                count++;
                 last_withdraw = amount;
 
                 printf("The amount has been withdrawn successfully.\n");
@@ -78,15 +85,61 @@ int main()
                 printf("Insufficient balance.\n");
             }
             break;
-
         case 4:
+        {
+            int fast_choice;
+
+            printf("\nFast Cash Options:\n");
+            printf("1. 100\n");
+            printf("2. 500\n");
+            printf("3. 1000\n");
+            printf("4. 2000\n");
+
+            printf("Choose amount: ");
+            scanf("%d", &fast_choice);
+
+            if (fast_choice == 1)
+                amount = 100;
+            else if (fast_choice == 2)
+                amount = 500;
+            else if (fast_choice == 3)
+                amount = 1000;
+            else if (fast_choice == 4)
+                amount = 2000;
+            else
+            {
+                printf("Invalid choice.\n");
+                break;
+            }
+
+            if (amount <= balance)
+            {
+                balance = balance - amount;
+
+                history[count] = -amount;
+                count++;
+
+                printf("Fast cash withdrawn successfully.\n");
+            }
+            else
+            {
+                printf("Insufficient balance.\n");
+            }
+            break;
+        }
+        case 5:
             printf("\n------ Mini Statement ------\n");
             printf("Current Balance : %.2f\n", balance);
             printf("Last Deposit    : %.2f\n", last_deposit);
             printf("Last Withdraw   : %.2f\n", last_withdraw);
+            printf("\nTransaction History:\n");
+            
+            for (int i = 0; i < count; i++)
+            {
+                printf("%.2f\n", history[i]);
+            }
             break;
-
-        case 5:
+        case 6:
         {
             int old_pin, new_pin;
 
@@ -108,14 +161,14 @@ int main()
             }
             break;
         }
-        case 6:
+        case 7:
             printf("Thank you for using our ATM. Have a nice day!\n");
-        break;
+            break;
         default:
             printf("Invalid choice. Please try again.\n");
         }
 
-    } while (choice != 5);
+    } while (choice != 7);
 
     return 0;
 }
