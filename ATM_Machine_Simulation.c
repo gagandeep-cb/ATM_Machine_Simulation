@@ -7,10 +7,7 @@ int main()
     float balance = 2000, amount;
     float last_deposit = 0, last_withdraw = 0;
     int attempts = 0;
-    float history[10];
-    int count = 0;
-
-    printf("========== Welcome to the ATM. Please insert your card... ==========\n");
+  printf("========== Welcome to the ATM. Please insert your card... ==========\n");
 
     while (attempts < 3)
     {
@@ -113,7 +110,7 @@ int main()
         }
         case 6:
             printf("Thank you for using our ATM. Have a nice day!\n");
-            return 0;
+        break;
         default:
             printf("Invalid choice. Please try again.\n");
         }
