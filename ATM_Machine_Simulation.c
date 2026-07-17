@@ -1,8 +1,16 @@
 #include <stdio.h>
-
+#include <string.h>
+int login(char username[], int pin)
+{
+    // Login code here
+}
 int main()
 {
     int pin1 = 2345, pin2;
+    char account_name[30] = "Gagandeep Banakar";
+    char bank_name[] = "STATE BANK OF INDIA";
+    char username[20] = "gagan";
+    char input_username[20];
     int choice;
     float balance = 2000, amount;
     float history[10];
@@ -13,12 +21,40 @@ int main()
 
     while (attempts < 3)
     {
+        printf("Enter Username: ");
+        scanf("%s", input_username);
+
+        if (strcasecmp(username, input_username) == 0)
+        {
+            printf("Username verified.\n");
+            break;
+        }
+        printf("Invalid Username. Please try again.\n");
+        attempts++;
+        if (attempts == 3)
+        {
+            printf("Maximum login attempts reached.\n");
+            printf("Please remove your card. Thank you.\n");
+            return 0;
+        }
+    }
+
+    while (attempts < 3)
+    {
         printf("Please enter your ATM PIN: ");
         scanf("%d", &pin2);
 
         if (pin2 == pin1)
         {
-            printf("PIN is correct. Please continue.\n");
+            printf("\nPIN is correct. Please continue.\n");
+            printf("\n==========================================\n");
+            printf("          %s\n", bank_name);
+            printf("==========================================\n");
+            printf("\nAccount Holder : %s\n", account_name);
+            printf("Username : %s\n", username);
+            
+            printf("\nLogin Successful!\n");
+            printf("\n==========================================\n");
             break;
         }
         else
@@ -133,7 +169,7 @@ int main()
             printf("Last Deposit    : %.2f\n", last_deposit);
             printf("Last Withdraw   : %.2f\n", last_withdraw);
             printf("\nTransaction History:\n");
-            
+
             for (int i = 0; i < count; i++)
             {
                 printf("%.2f\n", history[i]);
