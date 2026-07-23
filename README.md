@@ -1,107 +1,271 @@
-# ATM Machine Simulation in C
+# 🏧 ATM Machine Simulation in C
 
-## Overview
+## 📌 Overview
 
-This project is a simple **ATM Machine Simulation** developed using the C programming language.
-It is a beginner-friendly mini project to practice core C concepts like loops, arrays, conditions, switch-case, and functions.
+ATM Machine Simulation is a console-based C programming project developed while learning the fundamentals of the C language.
 
-The program simulates real ATM operations such as PIN verification, balance check, deposit, withdraw, fast cash, mini statement, and PIN change.
+This project is continuously upgraded whenever a new C concept is learned. It simulates the basic operations of a real ATM, including user authentication, account management, transactions, and security features.
 
----
-
-## Features
-
-* PIN Verification (3 attempts security)
-* Check Account Balance
-* Deposit Money
-* Withdraw Money
-* Fast Cash Option
-* Mini Statement
-* Transaction History using Arrays
-* Change ATM PIN
-* Exit Option
+The project demonstrates practical implementation of C programming concepts such as arrays, functions, pointers, strings, loops, and switch-case statements.
 
 ---
 
-## Concepts Used
+# ✨ Features
 
-* Variables
-* Data Types
-* Conditional Statements (`if-else`)
-* Loops (`while`, `do-while`)
-* Switch Case
-* Arrays
-* User Input / Output
-* Git & GitHub Version Control
+### 🔐 Authentication
+- Username Verification
+- PIN Verification
+- Maximum 3 Username Attempts
+- Maximum 3 PIN Attempts
+
+### 💰 Banking Operations
+- Check Balance
+- Deposit Money
+- Withdraw Money
+- Fast Cash
+- Mini Statement
+- Transaction History
+
+### 👤 Account Management
+- Change ATM PIN
+- Change Username
+- View Account Details
+
+### 🛡 Security
+- Username Verification before Username Change
+- Old PIN Verification before PIN Change
+- Username Confirmation before Updating
+- Invalid Login Protection
 
 ---
 
-## Menu Options
+# 📋 Menu Options
 
+```text
 1. Check Balance
 2. Deposit
 3. Withdraw
 4. Fast Cash
 5. Mini Statement
 6. Change PIN
-7. Exit
+7. Change Username
+8. Account Details
+9. Exit
+```
 
 ---
 
-## Fast Cash Options
+# 💵 Fast Cash Options
 
-* 100
-* 500
-* 1000
-* 2000
-
----
-
-## Transaction History
-
-This project stores transaction history using arrays.
-
-Example:
-
-+500 (Deposit)
--200 (Withdraw)
--1000 (Fast Cash)
+```text
+100
+500
+1000
+2000
+```
 
 ---
 
-## Security Features
+# 📄 Account Details
 
-* Maximum 3 PIN attempts
-* PIN change with old PIN verification
+Displays:
+
+```text
+=====================================
+         ACCOUNT DETAILS
+=====================================
+Bank Name
+Account Holder Name
+Username
+Current Balance
+=====================================
+```
 
 ---
 
-## How to Run
+# 📜 Mini Statement
 
-Compile:
+Displays
+
+- Current Balance
+- Last Deposit
+- Last Withdraw
+- Transaction History
+
+Example
+
+```text
+Current Balance : 2500.00
+
+Last Deposit : 500.00
+
+Last Withdraw : 200.00
+
+Transaction History
+
++500.00
+-200.00
+-1000.00
+```
+
+---
+
+# 🔒 Security Features
+
+- Username Authentication
+- PIN Authentication
+- Maximum 3 Login Attempts
+- Username Verification Before Username Change
+- Username Confirmation
+- Old PIN Verification
+- Invalid Login Handling
+
+---
+
+# 🛠 Concepts Used
+
+## C Programming
+
+- Variables
+- Data Types
+- Operators
+- Input / Output
+- Conditional Statements
+- Loops
+- Switch Case
+- Arrays
+- Functions
+- Pointers
+- Strings
+
+## String Functions
+
+- strcmp()
+- strcasecmp()
+- strcpy()
+
+## Pointer Concepts
+
+- Passing variables by address
+- Function using pointers
+- Dereferencing (`*`)
+- Pointer parameters
+
+## Git
+
+- Git
+- GitHub
+- Version Control
+
+---
+
+# 📂 Project Structure
+
+```text
+ATM_Machine_Simulation.c
+README.md
+```
+
+---
+
+# ▶️ How to Compile
 
 ```bash
 gcc ATM_Machine_Simulation.c -o ATM_Machine_Simulation
 ```
 
-Run:
+---
+
+# ▶️ How to Run
+
+Linux / WSL
 
 ```bash
 ./ATM_Machine_Simulation
 ```
 
----
+Windows
 
-## Future Improvements
-
-* File Handling for PIN Storage
-* File Handling for Balance Storage
-* Receipt Generation
-* Account Lock System
-* Date and Time in Mini Statement
+```bash
+ATM_Machine_Simulation.exe
+```
 
 ---
 
-## Author
+# 🚀 Current Version
+
+## ATM Version 1.2
+
+### Completed
+
+- Username Login
+- PIN Login
+- Check Balance
+- Deposit
+- Withdraw
+- Fast Cash
+- Mini Statement
+- Transaction History
+- Change PIN
+- Change Username
+- Account Details
+- Functions
+- Pointers
+- Strings
+
+---
+
+# 📚 Learning Journey
+
+This project is developed step by step while learning C programming.
+
+## Completed Topics
+
+- ✅ Variables
+- ✅ Data Types
+- ✅ Operators
+- ✅ if-else
+- ✅ Loops
+- ✅ Switch Case
+- ✅ Arrays
+- ✅ Functions
+- ✅ Pointers
+- ✅ Strings
+
+## Upcoming Topics
+
+- Structures
+- File Handling
+- Dynamic Memory Allocation
+- Linked List
+- Preprocessor
+- Command Line Arguments
+
+Each new topic will be added to this project to improve its functionality.
+
+---
+
+# 🔮 Future Improvements
+
+- Multiple User Accounts using Structures
+- Permanent Data Storage using File Handling
+- Date & Time in Mini Statement
+- ATM Card Number Verification
+- Receipt Generation
+- Account Lock System
+- Admin Login
+- Password Encryption
+- Transaction Limit
+- Multiple Account Support
+
+---
+
+# 👨‍💻 Author
 
 **Gagandeep Banakar**
+
+---
+
+## ⭐ Note
+
+This project is part of my C Programming learning journey. It is continuously enhanced by applying newly learned concepts and best programming practices.
