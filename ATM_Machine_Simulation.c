@@ -1,8 +1,20 @@
 #include <stdio.h>
 #include <string.h>
-int login(char username[], int pin)
+void account_details(char *bank_name, char *account_name, char *username, float *balance)
 {
-    // Login code here
+
+    {
+        printf("\n=====================================\n");
+        printf("         ACCOUNT DETAILS\n");
+        printf("=====================================\n");
+
+        printf("Bank Name      : %s\n", bank_name);
+        printf("Account Holder : %s\n", account_name);
+        printf("Username       : %s\n", username);
+        printf("Current Balance: %.2f\n", *balance);
+
+        printf("=====================================\n");
+    }
 }
 int main()
 {
@@ -11,13 +23,15 @@ int main()
     char bank_name[] = "STATE BANK OF INDIA";
     char username[20] = "gagan";
     char input_username[20];
+    char new_username[20];
+    char confirm_username[20];
     int choice;
     float balance = 2000, amount;
     float history[10];
     int count = 0;
     float last_deposit = 0, last_withdraw = 0;
     int attempts = 0;
-    printf("========== Welcome to the ATM. Please insert your card... ==========\n");
+    printf("\n========== Welcome to the ATM. Please insert your card... ==========\n\n");
 
     while (attempts < 3)
     {
@@ -52,7 +66,7 @@ int main()
             printf("==========================================\n");
             printf("\nAccount Holder : %s\n", account_name);
             printf("Username : %s\n", username);
-            
+
             printf("\nLogin Successful!\n");
             printf("\n==========================================\n");
             break;
@@ -80,7 +94,9 @@ int main()
         printf("4. Fast Cash\n");
         printf("5. Mini Statement\n");
         printf("6. Change PIN\n");
-        printf("7. Exit\n");
+        printf("7. Change Username\n");
+        printf("8. Account Details\n");
+        printf("9. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -198,13 +214,83 @@ int main()
             break;
         }
         case 7:
+        {
+            char current_username[20];
+
+            int username_attempts = 0;
+
+            while (username_attempts < 3)
+            {
+                printf("Enter Current Username: ");
+                scanf("%s", current_username);
+
+                if (strcmp(username, current_username) == 0)
+                {
+                    printf("Username Verified.\n");
+                    break;
+                }
+                else
+                {
+                    printf("Invalid Username. Please try again.\n");
+                    username_attempts++;
+                }
+            }
+
+            if (username_attempts == 3)
+            {
+                printf("Maximum attempts reached.\n");
+                break;
+            }
+
+            int change_attempts = 0;
+
+            while (change_attempts < 3)
+            {
+                printf("Enter New Username: ");
+                scanf("%s", new_username);
+
+                if (strcmp(username, new_username) == 0)
+                {
+                    printf("New username cannot be same as current username.\n");
+                    change_attempts++;
+                    continue;
+                }
+
+                printf("Confirm Username: ");
+                scanf("%s", confirm_username);
+
+                if (strcmp(new_username, confirm_username) == 0)
+                {
+                    strcpy(username, new_username);
+                    printf("Username Changed Successfully.\n");
+                    break;
+                }
+                else
+                {
+                    printf("Username Mismatch. Please try again.\n");
+                    change_attempts++;
+                }
+            }
+
+            if (change_attempts == 3)
+            {
+                printf("Maximum attempts reached.\n");
+            }
+            break;
+        }
+
+        case 8:
+        {
+            account_details(bank_name, account_name, username, &balance);
+            break;
+        }
+        case 9:
             printf("Thank you for using our ATM. Have a nice day!\n");
             break;
         default:
             printf("Invalid choice. Please try again.\n");
         }
-
-    } while (choice != 7);
+    } while (choice != 9);
 
     return 0;
 }
