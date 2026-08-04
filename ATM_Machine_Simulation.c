@@ -2,7 +2,6 @@
 #include <string.h>
 void account_details(char *bank_name, char *account_name, char *username, float *balance)
 {
-
     {
         printf("\n=====================================\n");
         printf("         ACCOUNT DETAILS\n");
