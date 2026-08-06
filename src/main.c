@@ -3,50 +3,53 @@
 #include "login.h"
 #include "transaction.h"
 #include "menu.h"
+#include "file.h"
+#include <string.h>
 
 int main()
 {
+    struct account user;
 
-    char bank_name[50] = "STATE BANK OF INDIA";
-    char account_name[50] = "Gagandeep Banakar";
-    char username[50] = "gagan";
+    strcpy(user.account_name, "Gagandeep Banakar");
+    strcpy(user.bank_name, "STATE BANK OF INDIA");
+    strcpy(user.username, "gagan");
+
+    user.balance = load_balance();
+    user.pin = 2345;
 
     float history[10];
     int count = 0;
 
     float last_deposit = 0;
     float last_withdraw = 0;
+    float last_fast_cash = 0;
 
-    float balance = 2000;
-
-    if (verify_username(username))
+    if (verify_username(user.username))
     {
         printf("Success\n");
     }
     else
     {
-        //printf("Failed\n");
+        // printf("Failed\n");
         return 0;
     }
 
-    int pin = 1234;
-
-    if (verify_pin(pin))
+    if (verify_pin(user.pin))
     {
         printf("Login successful.\n");
     }
     else
     {
-       // printf("Login failed.\n");
+        // printf("Login failed.\n");
         return 0;
     }
 
     printf("\n==========================================\n");
-    printf("          %s\n", bank_name);
+    printf("          %s\n", user.bank_name);
     printf("==========================================\n");
 
-    printf("Account Holder : %s\n", account_name);
-    printf("Username       : %s\n", username);
+    printf("Account Holder : %s\n", user.account_name);
+    printf("Username       : %s\n", user.username);
 
     int choice;
     while (1)
@@ -59,19 +62,30 @@ int main()
         switch (choice)
         {
         case 1:
-            deposit(&balance, history, &count, &last_deposit);
+            deposit(&user.balance, history, &count, &last_deposit);
+            save_balance(user.balance);
+            save_history("DEPOSIT", last_deposit);
             break;
 
         case 2:
-            withdraw(&balance, history, &count, &last_withdraw);
+            withdraw(&user.balance, history, &count, &last_withdraw);
+            save_balance(user.balance);
+            save_history("WITHDRAW", last_withdraw);
             break;
 
         case 3:
-            fast_cash(&balance, history, &count);
-            break;
+
+            fast_cash(&user.balance,
+                      history,
+                      &count,
+                      &last_fast_cash);
+
+            save_balance(user.balance);
+
+            save_history("FAST CASH", last_fast_cash);
 
         case 4:
-            mini_statement(balance,
+            mini_statement(user.balance,
                            history,
                            count,
                            last_deposit,
@@ -79,21 +93,18 @@ int main()
             break;
 
         case 5:
-            change_pin(&pin);
+            change_pin(&user.pin);
             break;
 
         case 6:
-            change_username(username);
+            change_username(user.username);
             break;
 
         case 7:
-            account_details(bank_name,
-                            account_name,
-                            username,
-                            &balance);
+            account_details(&user);
             break;
-                case 8:
-            printf("Your current balance is: %.2f\n", balance);
+        case 8:
+            printf("Your current balance is: %.2f\n", user.balance);
             break;
         case 9:
             printf("Thank you for using our ATM.\n");

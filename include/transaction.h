@@ -13,7 +13,8 @@ void withdraw(float *balance,
 
 void fast_cash(float *balance,
                float history[],
-               int *count);
+               int *count,
+               float *last_fast_cash);
 
 void mini_statement(float balance,
                     float history[],

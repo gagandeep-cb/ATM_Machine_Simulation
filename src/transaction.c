@@ -48,7 +48,9 @@ void withdraw(float *balance,
 }
 void fast_cash(float *balance,
                float history[],
-               int *count)
+               int *count,
+               float *last_fast_cash)
+
 {
     float amount;
     int fast_choice;
@@ -82,6 +84,7 @@ void fast_cash(float *balance,
 
         history[*count] = -amount;
         (*count)++;
+        *last_fast_cash = amount;
 
         printf("Fast cash withdrawn successfully.\n");
     }
